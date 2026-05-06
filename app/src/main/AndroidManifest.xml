@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- INTERNET untuk WebView -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,31 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alya_love">
-
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
         <!-- ✅ SPLASH JADI HALAMAN PERTAMA -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <!-- LOGIN -->
+        </activity> <!-- LOGIN -->
         <activity
             android:name=".pertemuan_3.ThirdActivity"
-            android:exported="false"/>
-
-        <!-- HALAMAN LAIN -->
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".bangun_ruang"/>
-        <activity android:name=".Luas_PersegiPanjang"/>
-        <activity android:name=".pertemuan_3.ThirdResultActivity"/>
-        <activity android:name=".pertemuan_3.CustomActivity"/>
-
+            android:exported="false" /> <!-- HALAMAN LAIN -->
+        <activity android:name=".MainActivity" />
+        <activity android:name=".bangun_ruang" />
+        <activity android:name=".Luas_PersegiPanjang" />
+        <activity android:name=".pertemuan_3.ThirdResultActivity" />
+        <activity android:name=".pertemuan_3.CustomActivity" />
     </application>
 
 </manifest>

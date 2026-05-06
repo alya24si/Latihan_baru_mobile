@@ -83,6 +83,16 @@
                 android:padding="12dp"
                 android:layout_marginBottom="18dp"/>
 
+            <!-- ⚠️ TAMBAHAN 1: ERROR MESSAGE (WAJIB untuk Soal 2) -->
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
             <!-- BUTTON -->
             <Button
                 android:id="@+id/btnLogin"
@@ -102,13 +112,17 @@
                 android:text="Belum punya akun?"
                 android:textColor="#DDFFFFFF"/>
 
+            <!-- ⚠️ TAMBAHAN 2: ID + CLICKABLE untuk Registrasi Akun (WAJIB untuk Soal 3) -->
             <TextView
+                android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Registrasi Akun"
                 android:textColor="#3E5A71"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <!-- FOOTER -->
             <TextView
