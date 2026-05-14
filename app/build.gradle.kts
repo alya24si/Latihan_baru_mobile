@@ -49,4 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.google.android.material:material:1.11.0") // Wajib untuk Chip & MaterialButton
+    implementation("androidx.cardview:cardview:1.0.0")
 }

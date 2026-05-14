@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="150dp"
+    android:viewportWidth="400"
+    android:viewportHeight="150">
+
+    <!-- 1️⃣ Background penuh warna header -->
+    <path
+        android:fillColor="#72A2D7"
+        android:pathData="M0,0 L400,0 L400,150 L0,150 Z"/>
+
+    <!-- 2️⃣ Gelombang LEBIH BESAR (menutup putih lebih dalam) -->
+    <path
+        android:fillColor="#A8C9E6"
+        android:pathData="M0,60 Q100,20 200,60 T400,60 L400,150 L0,150 Z"/>
+</vector>
