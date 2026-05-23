@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -71,12 +70,28 @@
             android:text="Web Bina Desa"
             android:textColor="#000000"/>
 
+        <!-- 🔹 Logout Button (tetap di atas, sesuai urutan visual) -->
+
+        <!-- 🔹 🔥 FIX: Button Pertemuan 10 - Dipindah ke BAWAH Logout & HAPUS constraint -->
+
+        <Button
+            android:id="@+id/btnPertemuan10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pertemuan 10"
+            android:backgroundTint="#6E90AF"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp" />
+
+
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
-            android:backgroundTint="#355675"
             android:layout_height="wrap_content"
+            android:backgroundTint="#355675"
             android:text="Logout" />
+
+
 
     </LinearLayout>
 

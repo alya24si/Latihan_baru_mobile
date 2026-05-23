@@ -12,15 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Alya_love">
         <activity
+            android:name=".pertemuan_10.TenthActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
-        <!-- ✅ SPLASH JADI HALAMAN PERTAMA -->
+            android:parentActivityName=".MainActivity" /> <!-- ✅ SPLASH JADI HALAMAN PERTAMA -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
