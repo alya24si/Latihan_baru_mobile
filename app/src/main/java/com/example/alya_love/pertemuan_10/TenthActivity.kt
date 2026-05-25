@@ -1,11 +1,9 @@
-// ✅ Edit: pertemuan_10/TenthActivity.kt
-
 package com.example.alya_love.pertemuan_10
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import com.example.alya_love.databinding.ActivityTenthBinding
-import com.google.android.material.tabs.TabLayoutMediator  // ← Import ini!
+import com.google.android.material.tabs.TabLayoutMediator
 
 class TenthActivity : AppCompatActivity() {
 
@@ -13,14 +11,12 @@ class TenthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityTenthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Setup Toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Pertemuan 10"
+            title = "GUARDIANNET"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
@@ -29,20 +25,20 @@ class TenthActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // 🔥 PANGGIL FUNGSI SETUP VIEWPAGER
         setupViewPager()
     }
 
-    // 🔥 FUNGSI BARU: Hubungkan TabLayout + ViewPager2 + Adapter
     private fun setupViewPager() {
         val tabsAdapter = TenthTabsAdapter(this)
-
         binding.viewPager.adapter = tabsAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Tab A"
-                1 -> tab.text = "Tab B"
+                0 -> tab.text = "Kejadian"
+                1 -> tab.text = "Posko"
+                2 -> tab.text = "Donasi"
+                3 -> tab.text = "Logistik"
+                4 -> tab.text = "Distribusi"
             }
         }.attach()
     }

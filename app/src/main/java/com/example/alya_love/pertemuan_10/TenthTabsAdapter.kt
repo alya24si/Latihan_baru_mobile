@@ -6,12 +6,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class TenthTabsAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 5
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> TabAFragment()
-            1 -> TabBFragment()
+            0 -> KejadianBencanaFragment()
+            1 -> PoskoBencanaFragment()
+            2 -> DonasiBencanaFragment()
+            3 -> LogistikFragment()
+            4 -> DistribusiFragment()
             else -> throw IllegalStateException("Posisi tidak valid")
         }
     }
