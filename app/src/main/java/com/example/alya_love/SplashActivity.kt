@@ -1,11 +1,11 @@
 package com.example.alya_love
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.alya_love.onboarding.OnBoardingActivity
 import com.example.alya_love.pertemuan_3.ThirdActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -14,19 +14,23 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val sharedPref = getSharedPreferences("LOGIN", MODE_PRIVATE)
-        val isLogin = sharedPref.getBoolean("isLogin", false)
+        val loginPref = getSharedPreferences("LOGIN", MODE_PRIVATE)
+        val appPref = getSharedPreferences("APP", MODE_PRIVATE)
+
+        val isLogin = loginPref.getBoolean("isLogin", false)
+        val isOnboardingDone = appPref.getBoolean("ONBOARDING", false)
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            if (isLogin) {
-                startActivity(Intent(this, MainActivity::class.java))
-            } else {
-                startActivity(Intent(this, ThirdActivity::class.java))
-            }
+            startActivity(
+                Intent(
+                    this,
+                    OnBoardingActivity::class.java
+                )
+            )
 
             finish()
 
-        }, 2000) // 2 detik
+        }, 2000)
     }
 }

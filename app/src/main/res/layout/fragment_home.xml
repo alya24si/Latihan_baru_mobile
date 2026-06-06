@@ -1,98 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <View
-        android:id="@+id/background_header"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/bg_header_wave"/>
-
-
-    <!-- CONTENT -->
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:background="#A8C9E6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#A8C9E6"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Silahkan pilih aktivitas yang anda inginkan!"
-            android:textStyle="italic"
-            android:textColor="#576095"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:id="@+id/judul_aplikasi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/gravitasone_regular"
-            android:text="Mobileku" />
-
-        <TextView
-            android:id="@+id/deskripsi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/gravitasone_regular"
-            android:text="Ini aplikasi punya Alya" />
-
-        <Button
-            android:id="@+id/btnRumus"
+        <View
+            android:id="@+id/background_header"
             android:layout_width="match_parent"
-            android:backgroundTint="#6E90AF"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Rumus Bangun Ruang" />
+            android:layout_height="60dp"
+            android:background="@drawable/bg_header_wave"/>
 
-        <Button
-            android:id="@+id/btnCustom1"
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="#A8C9E6"
             android:layout_width="match_parent"
-            android:backgroundTint="#5F8BA9"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Custom 1"/>
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#77A1BC"
-            android:text="Web Bina Desa"
-            android:textColor="#000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silahkan pilih aktivitas yang anda inginkan!"
+                android:textStyle="italic"
+                android:textColor="#576095"
+                android:layout_marginBottom="20dp"/>
 
-        <!-- 🔹 Logout Button (tetap di atas, sesuai urutan visual) -->
+            <TextView
+                android:id="@+id/judul_aplikasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gravitasone_regular"
+                android:text="Mobileku"/>
 
-        <!-- 🔹 🔥 FIX: Button Pertemuan 10 - Dipindah ke BAWAH Logout & HAPUS constraint -->
-
-        <Button
-            android:id="@+id/btnPertemuan10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pertemuan 10"
-            android:backgroundTint="#6E90AF"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Aplikasi Informasi Kebencanaan"/>
 
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#355675"
-            android:text="Logout" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📰 Berita Terkini"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNews"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
 
+            <Button
+                android:id="@+id/btnRumus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rumus Bangun Ruang"
+                android:textColor="@color/black"
+                android:backgroundTint="#6E90AF"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnCustom1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Custom 1"
+                android:textColor="@color/black"
+                android:backgroundTint="#5F8BA9"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Web Bina Desa"
+                android:textColor="#000000"
+                android:backgroundTint="#77A1BC"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnPertemuan10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pertemuan 10"
+                android:textColor="@color/black"
+                android:backgroundTint="#6E90AF"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:backgroundTint="#355675"
+                android:layout_marginTop="12dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
