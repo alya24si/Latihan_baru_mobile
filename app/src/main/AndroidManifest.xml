@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alya_love">
-
+        <activity
+            android:name=".pertemuan_10.TambahBencanaActivity"
+            android:exported="false" />
         <activity
             android:name=".onboarding.OnBoardingActivity"
             android:exported="false" />
@@ -42,6 +44,9 @@
         <activity android:name=".Luas_PersegiPanjang" />
         <activity android:name=".pertemuan_3.ThirdResultActivity" />
         <activity android:name=".pertemuan_3.CustomActivity" />
+        <activity
+            android:name=".pertemuan_10.TambahPoskoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

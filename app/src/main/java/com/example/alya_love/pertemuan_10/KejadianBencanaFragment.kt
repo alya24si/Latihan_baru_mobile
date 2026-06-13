@@ -1,28 +1,34 @@
 package com.example.alya_love.pertemuan_10
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alya_love.databinding.FragmentKejadianBencanaBinding
+import com.example.alya_love.room.AppDatabase
+import com.example.alya_love.room.BencanaEntity
+import kotlinx.coroutines.launch
 
 class KejadianBencanaFragment : Fragment() {
 
     private var _binding: FragmentKejadianBencanaBinding? = null
     private val binding get() = _binding!!
 
-    private val dataList = listOf(
-        Bencana(1, "Banjir", "Fugit tempore molestiae explicabo at. Rerum neque quos illo nihil est qui. Sunt...", "Sawahlunto", "2026-01-07", "https://picsum.photos/seed/banjir1/400/300"),
-        Bencana(2, "Tsunami", "Cupiditate consequatur eos dignissimos commodi nulla sequi. Dolores assumenda eo...", "Pematangsiantar", "2025-12-27", "https://picsum.photos/seed/tsunami1/400/300"),
-        Bencana(3, "Tsunami", "Eveniet porro qui sunt laboriosam dolore et quisquam. Quis quo commodi aut eum e...", "Tual", "2025-11-28", "https://picsum.photos/seed/tsunami2/400/300")
-    )
+    private lateinit var db: AppDatabase
+    private lateinit var adapter: BencanaAdapter
+
+    private val dataList = mutableListOf<BencanaEntity>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentKejadianBencanaBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,16 +36,82 @@ class KejadianBencanaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = BencanaAdapter(
+        db = AppDatabase.getDatabase(requireContext())
+
+        binding.fabTambah.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), TambahBencanaActivity::class.java)
+            )
+        }
+
+        adapter = BencanaAdapter(
             dataList,
             onItemClick = { },
             onEditClick = { },
-            onDeleteClick = { }
+            onDeleteClick = { bencana ->
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    db.bencanaDao().delete(bencana)
+                    loadData()
+                }
+            }
         )
 
-        binding.rvKejadianBencana.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = adapter
+        binding.rvKejadianBencana.layoutManager =
+            LinearLayoutManager(requireContext())
+
+        binding.rvKejadianBencana.adapter = adapter
+
+        insertDummyData()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
+    private fun insertDummyData() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            if (db.bencanaDao().getAll().isEmpty()) {
+
+                db.bencanaDao().insert(
+                    BencanaEntity(
+                        judul = "Banjir",
+                        deskripsi = "Banjir akibat hujan deras",
+                        lokasi = "Pekanbaru",
+                        tanggal = "2026-01-07",
+                        gambar = "https://picsum.photos/seed/banjir1/400/300"
+                    )
+                )
+
+                db.bencanaDao().insert(
+                    BencanaEntity(
+                        judul = "Tsunami",
+                        deskripsi = "Gelombang tinggi",
+                        lokasi = "Padang",
+                        tanggal = "2026-01-10",
+                        gambar = "https://picsum.photos/seed/tsunami1/400/300"
+                    )
+                )
+            }
+
+            loadData()
+        }
+    }
+
+    private fun loadData() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            val data = db.bencanaDao().getAll()
+
+            dataList.clear()
+            dataList.addAll(data)
+
+            adapter.notifyDataSetChanged()
         }
     }
 
