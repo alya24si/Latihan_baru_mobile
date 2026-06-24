@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_reminder"
+        android:title="Atur Reminder"
+        android:icon="@android:drawable/ic_popup_reminder"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_test_notification"
+        android:title="Test Notifikasi"
+        app:showAsAction="never"/>
+
+</menu>

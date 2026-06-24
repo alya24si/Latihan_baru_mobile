@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- INTERNET untuk WebView -->
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -11,9 +14,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alya_love">
+
+        <receiver
+            android:name=".utils.ReminderReceiver"
+            android:exported="false"/>
+
         <activity
             android:name=".pertemuan_10.TambahBencanaActivity"
             android:exported="false" />
+
+        <!-- ✅ TAMBAHKAN 2 INI -->
+        <activity
+            android:name=".pertemuan_10.DetailBencanaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_10.EditBencanaActivity"
+            android:exported="false" />
+        <!-- ✅ SAMPAI SINI -->
+
         <activity
             android:name=".onboarding.OnBoardingActivity"
             android:exported="false" />
@@ -26,19 +44,18 @@
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" /> <!-- ✅ SPLASH JADI HALAMAN PERTAMA -->
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- LOGIN -->
+        </activity>
         <activity
             android:name=".pertemuan_3.ThirdActivity"
-            android:exported="false" /> <!-- HALAMAN LAIN -->
+            android:exported="false" />
         <activity android:name=".MainActivity" />
         <activity android:name=".bangun_ruang" />
         <activity android:name=".Luas_PersegiPanjang" />
@@ -46,6 +63,13 @@
         <activity android:name=".pertemuan_3.CustomActivity" />
         <activity
             android:name=".pertemuan_10.TambahPoskoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".pertemuan_10.DetailPoskoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_10.EditPoskoActivity"
             android:exported="false" />
     </application>
 

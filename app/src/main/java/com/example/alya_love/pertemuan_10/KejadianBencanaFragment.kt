@@ -1,10 +1,13 @@
 package com.example.alya_love.pertemuan_10
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,12 +26,21 @@ class KejadianBencanaFragment : Fragment() {
 
     private val dataList = mutableListOf<BencanaEntity>()
 
+    // ========== TAMBAHAN: Launcher untuk refresh setelah edit ==========
+    private val editLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == android.app.Activity.RESULT_OK) {
+            loadData()
+        }
+    }
+    // ===================================================================
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentKejadianBencanaBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,15 +58,27 @@ class KejadianBencanaFragment : Fragment() {
 
         adapter = BencanaAdapter(
             dataList,
-            onItemClick = { },
-            onEditClick = { },
-            onDeleteClick = { bencana ->
+            // ========== TAMBAHAN: Lihat Detail ==========
+            onItemClick = { bencana ->
+                val intent = Intent(requireContext(), DetailBencanaActivity::class.java)
+                intent.putExtra("EXTRA_ID", bencana.id)
+                startActivity(intent)
+            },
+            // ============================================
 
-                viewLifecycleOwner.lifecycleScope.launch {
-                    db.bencanaDao().delete(bencana)
-                    loadData()
-                }
+            // ========== TAMBAHAN: Edit ==========
+            onEditClick = { bencana ->
+                val intent = Intent(requireContext(), EditBencanaActivity::class.java)
+                intent.putExtra("EXTRA_ID", bencana.id)
+                editLauncher.launch(intent)
+            },
+            // ================================
+
+            // ========== DIUBAH: Hapus dengan konfirmasi ==========
+            onDeleteClick = { bencana ->
+                showDeleteConfirmation(bencana)
             }
+            // ===================================================
         )
 
         binding.rvKejadianBencana.layoutManager =
@@ -65,6 +89,22 @@ class KejadianBencanaFragment : Fragment() {
         insertDummyData()
     }
 
+    // ========== TAMBAHAN: Dialog konfirmasi hapus ==========
+    private fun showDeleteConfirmation(bencana: BencanaEntity) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Hapus Kejadian?")
+            .setMessage("Apakah Anda yakin ingin menghapus \"${bencana.judul}\"?")
+            .setPositiveButton("Hapus") { _, _ ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    db.bencanaDao().delete(bencana)
+                    Toast.makeText(requireContext(), "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    loadData()
+                }
+            }
+            .setNegativeButton("Batal", null)
+            .show()
+    }
+    // ===================================================
 
     override fun onResume() {
         super.onResume()
@@ -72,11 +112,8 @@ class KejadianBencanaFragment : Fragment() {
     }
 
     private fun insertDummyData() {
-
         viewLifecycleOwner.lifecycleScope.launch {
-
             if (db.bencanaDao().getAll().isEmpty()) {
-
                 db.bencanaDao().insert(
                     BencanaEntity(
                         judul = "Banjir",
@@ -86,7 +123,6 @@ class KejadianBencanaFragment : Fragment() {
                         gambar = "https://picsum.photos/seed/banjir1/400/300"
                     )
                 )
-
                 db.bencanaDao().insert(
                     BencanaEntity(
                         judul = "Tsunami",
@@ -97,20 +133,15 @@ class KejadianBencanaFragment : Fragment() {
                     )
                 )
             }
-
             loadData()
         }
     }
 
     private fun loadData() {
-
         viewLifecycleOwner.lifecycleScope.launch {
-
             val data = db.bencanaDao().getAll()
-
             dataList.clear()
             dataList.addAll(data)
-
             adapter.notifyDataSetChanged()
         }
     }
