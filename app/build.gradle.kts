@@ -55,7 +55,6 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.cardview:cardview:1.0.0")
 
-    // ✅ TAMBAHAN BARU (jangan lupa hapus // di depannya):
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -68,4 +67,16 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+    // ✅ DEPENDENCIES BARU UNTUK KAMERA & QR CODE
+    implementation("com.google.zxing:core:3.5.2")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
+    val cameraxVersion = "1.3.1"
+    implementation("androidx.camera:camera-core:${cameraxVersion}")
+    implementation("androidx.camera:camera-camera2:${cameraxVersion}")
+    implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
+    implementation("androidx.camera:camera-view:${cameraxVersion}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }

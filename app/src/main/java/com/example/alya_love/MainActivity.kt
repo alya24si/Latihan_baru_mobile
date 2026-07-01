@@ -1,13 +1,16 @@
 package com.example.alya_love
 
-import android.content.Intent          // ← TAMBAH INI
-import android.view.Menu               // ← TAMBAH INI
-import android.view.MenuItem           // ← TAMBAH INI
+import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.alya_love.settings.SettingsActivity  // ← TAMBAH INI
+import com.example.alya_love.settings.SettingsActivity
+import com.example.alya_love.pertemuan_10.QRGeneratorActivity
+import com.example.alya_love.pertemuan_10.QRScannerActivity
+import com.example.alya_love.pertemuan_10.CameraIntentActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,17 +49,28 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-    // ✅ METHOD BARU 1: Buat menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
-    // ✅ METHOD BARU 2: Handle klik menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            // ✅ HANDLE MENU BARU
+            R.id.action_qr_generator -> {
+                startActivity(Intent(this, QRGeneratorActivity::class.java))
+                true
+            }
+            R.id.action_qr_scanner -> {
+                startActivity(Intent(this, QRScannerActivity::class.java))
+                true
+            }
+            R.id.action_camera_intent -> {
+                startActivity(Intent(this, CameraIntentActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
