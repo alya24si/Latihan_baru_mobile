@@ -1,110 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#A8C9E6">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#A8C9E6"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#A8C9E6">
 
+        <!-- Header Wave -->
         <View
             android:id="@+id/background_header"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_header_wave"/>
+            android:layout_height="80dp"
+            android:background="@drawable/bg_header_wave" />
 
+        <!-- Main Content Container -->
         <LinearLayout
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:background="#A8C9E6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="32dp">
 
+            <!-- Greeting Text -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Silahkan pilih aktivitas yang anda inginkan!"
                 android:textStyle="italic"
                 android:textColor="#576095"
-                android:layout_marginBottom="20dp"/>
+                android:textSize="13sp"
+                android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/judul_aplikasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/gravitasone_regular"
-                android:text="Mobileku"/>
-
-            <TextView
-                android:id="@+id/deskripsi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Aplikasi Informasi Kebencanaan"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📰 Berita Terkini"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNews"
+            <!-- App Title Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"/>
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginBottom="20dp">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/judul_aplikasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gravitasone_regular"
+                        android:text="Mobileku"
+                        android:textSize="32sp"
+                        android:textColor="#355675" />
+
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="3dp"
+                        android:background="#6E90AF"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:id="@+id/deskripsi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aplikasi Informasi Kebencanaan"
+                        android:textSize="14sp"
+                        android:textColor="#576095" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- News Section Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📰 Berita Terkini"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="#355675"
+                        android:layout_marginBottom="12dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvNews"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Action Buttons Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu Utama"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#355675"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Button: Rumus Bangun Ruang -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRumus"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rumus Bangun Ruang"
-                android:textColor="@color/black"
-                android:backgroundTint="#6E90AF"
-                android:layout_marginTop="12dp"/>
+                android:layout_height="52dp"
+                android:text="Estimasi Kebutuhan Logistik"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:backgroundTint="#6E90AF"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"
+                android:layout_marginBottom="10dp" />
 
-            <Button
+            <!-- Button: Custom 1 -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCustom1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:text="Custom 1"
-                android:textColor="@color/black"
-                android:backgroundTint="#5F8BA9"
-                android:layout_marginTop="12dp"/>
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:backgroundTint="#5F8BA9"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"
+                android:layout_marginBottom="10dp" />
 
-            <Button
+            <!-- Button: Website Bina Desa -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnStart"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Web Bina Desa"
-                android:textColor="#000000"
-                android:backgroundTint="#77A1BC"
-                android:layout_marginTop="12dp"/>
+                android:layout_height="52dp"
+                android:text="Website Bina Desa"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:backgroundTint="#77A1BC"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"
+                android:layout_marginBottom="10dp" />
 
-            <Button
+            <!-- Button: Fitur Bina Desa -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPertemuan10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pertemuan 10"
-                android:textColor="@color/black"
-                android:backgroundTint="#6E90AF"
-                android:layout_marginTop="12dp"/>
+                android:layout_height="52dp"
+                android:text="Fitur Bina Desa"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:backgroundTint="#6E90AF"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"
+                android:layout_marginBottom="10dp" />
 
-            <Button
+            <!-- Button: Logout -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:text="Logout"
-                android:backgroundTint="#355675"
-                android:layout_marginTop="12dp"/>
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:backgroundTint="#355675"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"
+                app:icon="@android:drawable/ic_lock_power_off"
+                app:iconTint="#FFFFFF"
+                app:iconGravity="textStart"
+                android:layout_marginTop="8dp" />
 
         </LinearLayout>
 

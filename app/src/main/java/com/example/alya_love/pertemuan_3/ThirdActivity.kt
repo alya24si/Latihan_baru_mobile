@@ -87,3 +87,46 @@ class ThirdActivity : AppCompatActivity() {
         finish()
     }
 }
+
+//[START]
+//│
+//▼
+//[Load SharedPreferences]
+//│
+//▼
+//<isLogin == true?> ──[YES]──▶ [Intent MainActivity] ──▶ [END]
+//│
+//[NO]
+//│
+//▼
+//[User Input Username & Password]
+//│
+//▼
+//[Klik btnLogin]
+//│
+//▼
+//<Input Kosong?> ─[YES]──▶ [showError()] ─▶ [END]
+//│
+//[NO]
+//│
+//▼
+//<username == password?> ──[YES]──▶ [saveLoginState()] ──▶ [moveToMain()] ──▶ [END]
+//│
+//[NO]
+//│
+//▼
+//[Ambil savedData dari SharedPreferences]
+//│
+//▼
+//<Input == savedData?> ──[NO]──▶ [showError()] ──▶ [END]
+//│
+//[YES]
+//│
+//▼
+//[saveLoginState()]
+//│
+//▼
+//[moveToMain()]
+//│
+//▼
+//[END]

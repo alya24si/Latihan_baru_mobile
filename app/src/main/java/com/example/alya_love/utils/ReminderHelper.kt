@@ -54,3 +54,52 @@ object ReminderHelper {
         }
     }
 }
+
+//[START]
+//▼
+//[User Klik Menu "Reminder"]
+//▼
+//[onOptionsItemSelected(action_reminder)]
+//▼
+//[showReminderDialog()]
+//│ Penjelasan: Tampilkan dialog custom untuk set reminder
+//▼
+//[DialogReminderBinding.inflate()]
+//▼
+//[currentTab = viewPager.currentItem]
+//│ Penjelasan: Ambil posisi tab aktif untuk judul reminder
+//▼
+//<currentTab?> → [tabName: "Kejadian"/"Posko"/"Donasi"/...]
+//▼
+//[AlertDialog.Builder.setView(dialogBinding.root).show()]
+//│ Penjelasan: Bangun dan tampilkan dialog
+//▼
+//[User Input etMinutes]
+//▼
+//[User Klik btnSet]
+//▼
+//[minutes = etMinutes.text.toString().toIntOrNull()]
+//│ Penjelasan: Konversi input ke Int, null jika gagal
+//▼
+//<minutes == null || minutes <= 0?> ──[YES]──▶ [Toast "Masukkan menit valid"] → [END]
+//│ Penjelasan: Validasi input harus angka positif
+//[NO]
+//▼
+//[ReminderHelper.setReminder(context, minutes, title, message, TenthActivity)]
+//│ Penjelasan: Method helper untuk set alarm
+//▼
+//[AlarmManager.setExactAndAllowWhileIdle()]
+//│ Penjelasan: Set alarm yang tetap jalan meski HP idle/doze mode
+//▼
+//[Sistem Menunggu Waktu Tercapai]
+//│ Penjelasan: OS Android handle di background
+//▼
+//[ReminderReceiver.onReceive()]
+//│ Penjelasan: BroadcastReceiver menerima broadcast dari AlarmManager
+//▼
+//[NotificationHelper.showNotification()]
+//│ Penjelasan: Build notification dengan channel, icon, intent
+//▼
+//[Notifikasi Muncul]
+//▼
+//[END]

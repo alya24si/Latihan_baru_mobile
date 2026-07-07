@@ -5,6 +5,5 @@ data class Donasi(
     val namaDonatur: String,
     val jenisDonasi: String,
     val nilai: String,
-    val kejadian: String,
-    val gambar: String
+    val kejadian: String
 )

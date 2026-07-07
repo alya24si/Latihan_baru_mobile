@@ -100,3 +100,51 @@ class OnBoardAdapter(
             .start()
     }
 }
+
+//[START]
+//│
+//▼
+//[OnBoardingActivity.onCreate()]
+//│
+//▼
+//[ActivityOnBoardingBinding.inflate()]
+//│ Penjelasan: ViewBinding untuk akses view tanpa findViewById
+//▼
+//[Buat List<OnBoardItem> (3 item)]
+//│ Penjelasan: Data class berisi gambar, judul, deskripsi tiap halaman
+//▼
+//[viewPager.adapter = OnBoardAdapter(list)]
+//│ Penjelasan: ViewPager2 butuh adapter untuk render halaman
+//▼
+//[viewPager.registerOnPageChangeCallback()]
+//│ Penjelasan: Listener untuk deteksi perubahan halaman
+//▼
+//[User Swipe ViewPager]
+//│
+//▼
+//[onPageSelected(position)]
+//│ Penjelasan: Callback dipanggil saat halaman berubah
+//▼
+//<position == list.size - 1?> ──[YES]──▶ [btnMulai.visibility = VISIBLE]
+//│ Penjelasan: Jika di halaman terakhir, tampilkan tombol "Mulai"
+//[NO]
+//▼
+//[btnMulai.visibility = GONE]
+//│ Penjelasan: Sembunyikan tombol jika belum di halaman terakhir
+//▼
+//[User Klik btnMulai]
+//│
+//▼
+//[getSharedPreferences("APP", MODE_PRIVATE)]
+//│ Penjelasan: Akses file penyimpanan lokal bernama "APP"
+//▼
+//[.edit().putBoolean("ONBOARDING", true).apply()]
+//│ Penjelasan: Simpan flag "sudah lihat onboarding" agar tidak muncul lagi
+//▼
+//[Intent(this, ThirdActivity::class.java)]
+//│ Penjelasan: Pindah ke halaman login
+//▼
+//[startActivity()] → [finish()]
+//│ Penjelasan: Mulai Activity baru + tutup OnBoardingActivity
+//▼
+//[END]

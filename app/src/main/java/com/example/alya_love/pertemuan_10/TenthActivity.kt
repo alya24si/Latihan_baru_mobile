@@ -167,3 +167,47 @@ class TenthActivity : AppCompatActivity() {
         return true
     }
 }
+
+
+//ALUR TAB LAYOUT
+//[START]
+//│
+//▼
+//[TenthActivity.onCreate()]
+//▼
+//[ActivityTenthBinding.inflate()]
+//▼
+//[setSupportActionBar(toolbar)]
+//│ Penjelasan: Aktifkan toolbar dengan title "GUARDIANNET"
+//▼
+//[requestNotificationPermission()]
+//│ Penjelasan: Minta izin POST_NOTIFICATIONS (wajib di Android 13+)
+//▼
+//[PermissionHelper.isNotificationPermissionRequired?] ──[YES]──▶ [requestPermission()]
+//│ Penjelasan: Cek versi Android & status izin
+//▼
+//[setupViewPager()]
+//│ Penjelasan: Setup ViewPager2 + TabLayout
+//▼
+//[TenthTabsAdapter(this)]
+//│ Penjelasan: Adapter yang menyediakan 5 fragment untuk 5 tab
+//▼
+//[viewPager.adapter = tabsAdapter]
+//▼
+//[TabLayoutMediator(tabLayout, viewPager).attach()]
+//│ Penjelasan: Sinkronkan TabLayout dengan ViewPager2
+//▼
+//[User Swipe/Klik Tab]
+//▼
+//<position?>
+//│ Penjelasan: Adapter dipanggil untuk buat fragment sesuai posisi
+//│
+//├─[0] → [KejadianBencanaFragment()]
+//├─[1] → [PoskoBencanaFragment()]
+//├─[2] → [DonasiBencanaFragment()]
+//├─[3] → [LogistikFragment()]
+//└─[4] → [DistribusiFragment()]
+//▼
+//[Fragment Tampil]
+//▼
+//[END]

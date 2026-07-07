@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.alya_love.databinding.ActivityDetailPoskoBinding
 import com.example.alya_love.room.AppDatabase
+import com.example.alya_love.room.PoskoEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class DetailPoskoActivity : AppCompatActivity() {
 
@@ -42,7 +44,7 @@ class DetailPoskoActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindData(item: com.example.alya_love.room.PoskoEntity) {
+    private fun bindData(item: PoskoEntity) {
         binding.tvNamaPosko.text = item.namaPosko
         binding.tvAlamat.text = item.alamat
         binding.tvKapasitas.text = item.kapasitas
@@ -50,9 +52,23 @@ class DetailPoskoActivity : AppCompatActivity() {
         binding.tvTelepon.text = item.telepon
 
         if (item.gambar.isNotEmpty()) {
-            Glide.with(this)
-                .load(Uri.parse(item.gambar))
-                .into(binding.ivGambar)
+            // ✅ CEK: URL internet atau file lokal?
+            if (item.gambar.startsWith("http://") || item.gambar.startsWith("https://")) {
+                // URL internet (dari dummy data)
+                Glide.with(this)
+                    .load(item.gambar)
+                    .into(binding.ivGambar)
+            } else {
+                // File lokal (dari user upload)
+                val file = File(item.gambar)
+                if (file.exists()) {
+                    Glide.with(this)
+                        .load(file)
+                        .into(binding.ivGambar)
+                } else {
+                    binding.ivGambar.setImageResource(android.R.drawable.ic_menu_gallery)
+                }
+            }
         } else {
             binding.ivGambar.setImageResource(android.R.drawable.ic_menu_gallery)
         }

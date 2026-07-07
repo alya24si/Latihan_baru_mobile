@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center"
-    android:background="#F5F5F5">
+    android:background="#F5F5F5"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="QR Code Generator"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/etQRText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Masukkan teks untuk QR Code"
-        android:padding="12dp"
-        android:background="@drawable/bg_card"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:gravity="top" />
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btnGenerateQR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Generate QR Code"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#6200EE" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QR Code Generator"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#355675"
+            android:layout_marginBottom="24dp" />
 
-    <ImageView
-        android:id="@+id/ivQRCode"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="24dp"
-        android:scaleType="centerInside"
-        android:background="@drawable/bg_card"
-        android:padding="8dp"
-        android:contentDescription="QR Code" />
+        <EditText
+            android:id="@+id/etQRText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan teks untuk QR Code"
+            android:padding="16dp"
+            android:background="@drawable/bg_card"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top" />
 
-    <Button
-        android:id="@+id/btnSaveQR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Simpan ke Galeri"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/btnGenerateQR"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Generate QR Code"
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#6200EE" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivQRCode"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="centerInside"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:contentDescription="QR Code" />
+
+        <Button
+            android:id="@+id/btnSaveQR"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Simpan ke Galeri"
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:backgroundTint="#4CAF50" />
+
+    </LinearLayout>
+
+</ScrollView>

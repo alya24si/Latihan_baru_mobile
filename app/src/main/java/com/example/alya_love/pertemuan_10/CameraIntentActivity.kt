@@ -194,3 +194,40 @@ class CameraIntentActivity : AppCompatActivity() {
         }
     }
 }
+
+//[START]
+//│
+//▼
+//[Klik btnTakePhoto]
+//│
+//▼
+//[Cek Permission Kamera]
+//│
+//▼
+//<GRANTED?> ──[NO]──▶ [Minta Izin] ─▶ [END]
+//│
+//[YES]
+//│
+//▼
+//[Buat File Kosong → FileProvider.getUriForFile()]
+//│
+//▼
+//[takePictureLauncher.launch(uri)]
+//│
+//▼
+//[Kamera Terbuka → User Memotret]
+//│
+//▼
+//[Callback success → Tampilkan Preview di ImageView]
+//│
+//▼
+//[User Klik btnSaveToGallery]
+//│
+//▼
+//[MediaStore.insert() → Simpan ke Pictures/AlyaLove_Photos]
+//│
+//▼
+//[Toast "Tersimpan"]
+//│
+//▼
+//[END]

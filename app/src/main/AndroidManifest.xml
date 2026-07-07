@@ -99,6 +99,29 @@
         <activity
             android:name=".pertemuan_10.EditPoskoActivity"
             android:exported="false" />
+
+        <!-- ✅ ACTIVITY DONASI -->
+        <activity
+            android:name=".pertemuan_10.DonasiFormActivity"
+            android:exported="false" />
+        <!-- Tambahkan di dalam tag <application> -->
+        <activity
+            android:name=".pertemuan_10.DetailDonasiActivity"
+            android:exported="false" />
+        <!-- Tambahkan di dalam tag <application> -->
+        <activity
+            android:name=".pertemuan_10.DistribusiFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_10.DetailDistribusiActivity"
+            android:exported="false" />
+        <!-- Tambahkan di dalam tag <application> -->
+        <activity
+            android:name=".pertemuan_10.LogistikFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_10.DetailLogistikActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

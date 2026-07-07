@@ -80,3 +80,56 @@ class SettingsActivity : AppCompatActivity() {
         return true
     }
 }
+
+//ALUR SETTINGS (Filter + ListView)
+//[START]
+//▼
+//[SettingsActivity.onCreate()]
+//▼
+//[ActivitySettingsBinding.inflate()]
+//▼
+//[allItems = listOf(6 InfoItem: Privacy, About, Help)]
+//│ Penjelasan: Data statis untuk ListView
+//▼
+//[adapter = SettingsAdapter(this, allItems)]
+//│ Penjelasan: Custom adapter untuk ListView
+//▼
+//[listViewInfo.adapter = adapter]
+//▼
+//[chipGroupFilter.setOnCheckedStateChangeListener]
+//│ Penjelasan: Listener untuk ChipGroup (filter kategori)
+//▼
+//[User Klik Chip (Privacy/About/Help)]
+//▼
+//[adapter.filterByCategory(chip.text)]
+//│ Penjelasan: Filter list berdasarkan kategori chip
+//▼
+//[ListView Terfilter]
+//▼
+//[User Klik Card (Privacy/About/Help/Contact)]
+//▼
+//<card?>
+//├─[cardPrivacy]──▶ [filterAndScroll("Privacy")]
+//│   Penjelasan: Filter list + scroll ke atas
+//├─[cardAbout]────▶ [filterAndScroll("About")]
+//├─[cardHelp]─────▶ [filterAndScroll("Help")]
+//└─[cardContact]──▶ [Toast "Email: support@alyalove.com"]
+//▼
+//[User Isi Form (etName, etMessage)]
+//▼
+//[User Klik btnSend]
+//▼
+//<name.isEmpty()?> ──[YES]──▶ [etName.error = "Wajib diisi"] → [END]
+//│ Penjelasan: Validasi field nama
+//[NO]
+//▼
+//<msg.isEmpty()?> ──[YES]──▶ [etMessage.error = "Wajib diisi"] → [END]
+//│ Penjelasan: Validasi field pesan
+//[NO]
+//▼
+//[Toast "Terima kasih, $name! Pesan terkirim ✅"]
+//▼
+//[etName.text.clear()] → [etMessage.text.clear()]
+//│ Penjelasan: Reset form setelah submit
+//▼
+//[END]

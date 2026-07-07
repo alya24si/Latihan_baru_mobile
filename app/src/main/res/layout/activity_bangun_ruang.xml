@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,91 +6,196 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".bangun_ruang">
 
-    <!-- ✅ TOOLBAR (TAMBAHAN) -->
+    <!-- ✅ TOOLBAR TEMA EMERGENCY -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#988DB4"
-        android:title="Bangun Ruang"
+        android:background="#C0392B"
+        android:title="🚨 Kalkulator Logistik Darurat"
         android:titleTextColor="#FFFFFF"
+        android:subtitle="Hitung kebutuhan bantuan korban bencana"
+        android:subtitleTextColor="#FFE5E5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- ❗ HANYA INI YANG DIUBAH -->
-    <EditText
-        android:id="@+id/panjang"
-        android:hint="Panjang"
+    <!-- ✅ CARD INPUT -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/lebar"
-        android:hint="Lebar"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 Data Posko"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#C0392B"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Jumlah Korban -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jumlah Korban Jiwa"
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:startIconDrawable="@android:drawable/ic_menu_myplaces">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/panjang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Jumlah Hari -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jumlah Hari Penanggulangan"
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:startIconDrawable="@android:drawable/ic_menu_recent_history">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lebar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Jumlah Posko -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jumlah Posko Pengungsian"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:startIconDrawable="@android:drawable/ic_menu_mapmode">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tinggi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tombol Hitung -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHitung"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="🧮 Hitung Kebutuhan Logistik"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                app:backgroundTint="#C0392B"
+                app:cornerRadius="12dp"
+                app:elevation="4dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- ✅ CARD HASIL -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardHasil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/panjang"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/cardInput"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/tinggi"
-        android:hint="Tinggi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/lebar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnHitung"
-        android:text="Hitung Volume"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tinggi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📦 Estimasi Kebutuhan Logistik"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#27AE60"
+                android:layout_marginBottom="12dp"/>
 
-    <TextView
-        android:id="@+id/hasil"
-        android:text="Hasil"
-        android:textSize="18sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnHitung"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/hasil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Isi data di atas lalu klik tombol hitung untuk melihat estimasi kebutuhan logistik..."
+                android:textSize="14sp"
+                android:textColor="#2C3E50"
+                android:lineSpacingExtra="4dp"/>
 
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- ✅ INFO BAWAH -->
     <TextView
         android:id="@+id/text_halamanUtama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
-        android:text="Aplikasi sehat"
+        android:layout_marginBottom="8dp"
+        android:text="🚨 Tanggap Darurat"
         android:fontFamily="@font/gravitasone_regular"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#C0392B"
+        app:layout_constraintBottom_toTopOf="@id/text_deskripsi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/text_deskripsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ini aplikasi punya  Alya"
+        android:layout_marginBottom="24dp"
+        android:text="Aplikasi Informasi Kebencanaan - Alya"
         android:fontFamily="@font/gravitasone_regular"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textSize="13sp"
+        android:textColor="#7F8C8D"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_halamanUtama" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

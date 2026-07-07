@@ -54,3 +54,35 @@ object NotificationHelper {
         manager.notify(System.currentTimeMillis().toInt() + requestCode, notification)
     }
 }
+
+//[START]
+//│
+//▼
+//[User Pilih Waktu di Dialog/Settings]
+//│
+//▼
+//[ReminderHelper.setReminder(context, waktu)]
+//│
+//▼
+//[AlarmManager.setExactAndAllowWhileIdle()]
+//│
+//▼
+//[Sistem Android Menunggu Waktu Tercapai]
+//│
+//▼
+//[Waktu Tercapai -> Broadcast ke ReminderReceiver]
+//│
+//▼
+//[ReminderReceiver.onReceive()]
+//│
+//▼
+//[NotificationHelper.showNotification()]
+//│
+//▼
+//[NotificationManager.notify(ID, Notification)]
+//│
+//▼
+//[Notifikasi Muncul di Status Bar HP]
+//│
+//▼
+//[END]

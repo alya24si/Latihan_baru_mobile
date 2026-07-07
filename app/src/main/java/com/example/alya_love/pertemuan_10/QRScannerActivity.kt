@@ -175,3 +175,85 @@ class QRScannerActivity : AppCompatActivity() {
         barcodeScanner.close()
     }
 }
+
+//Mulai
+//│
+//▼
+//onCreate()
+//│
+//▼
+//setContentView(R.layout.activity_qr_scanner)
+//│
+//▼
+//initViews()
+//(findViewById PreviewView,
+//TextView, Button)
+//│
+//▼
+//setupBarcodeScanner()
+//(BarcodeScannerOptions +
+//BarcodeScanning.getClient())
+//│
+//▼
+//cameraExecutor =
+//Executors.newSingleThreadExecutor()
+//│
+//▼
+//checkCameraPermission()
+//│
+//▼
+//ContextCompat.checkSelfPermission()
+//│
+//┌──┴──────────────────────┐
+//│                         │
+//Permission Ditolak     Permission Diberikan
+//│                         │
+//▼                         ▼
+//cameraPermission      startCamera()
+//Launcher.launch()         │
+//│                         ▼
+//┌───────────────┐   ProcessCameraProvider
+//│ Izin Ditolak  │        │
+//│ Toast +       │        ▼
+//│ finish()      │   bindCameraUseCases()
+//└───────────────┘        │
+//▼
+//Preview.Builder()
+//│
+//▼
+//ImageAnalysis.Builder()
+//│
+//▼
+//processImageProxy(imageProxy)
+//│
+//▼
+//InputImage.fromMediaImage()
+//│
+//▼
+//barcodeScanner.process(image)
+//│
+//┌──────────┴──────────┐
+//│                     │
+//Scan Gagal            Scan Berhasil
+//│                     │
+//▼                     ▼
+//Log Error        barcode.rawValue
+//│
+//▼
+//tvScanResult.text = value
+//│
+//▼
+//Toast "QR Code terdeteksi!"
+//│
+//▼
+//imageProxy.close()
+//│
+//▼
+//onDestroy()
+//│
+//▼
+//cameraExecutor.shutdown()
+//barcodeScanner.close()
+//│
+//▼
+//Selesai

@@ -77,3 +77,83 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+//[START]
+//│
+//▼
+//[MainActivity.onCreate()]
+//│ Penjelasan: Lifecycle pertama Activity dipanggil saat app dibuka
+//▼
+//[setContentView(activity_main)]
+//│ Penjelasan: Inflate layout XML ke memori
+//▼
+//[setSupportActionBar(toolbar)]
+//│ Penjelasan: Mengaktifkan Toolbar sebagai ActionBar untuk menu icon
+//▼
+//[savedInstanceState == null?] ──[YES]──▶ [loadFragment(HomeFragment())]
+//│ Penjelasan: Cek apakah Activity baru dibuat atau di-restore (mencegah fragment double)
+//│                                            │
+//[NO]                                          │
+//│                                            │
+//└──────────────┬─────────────────────────────┘
+//│
+//▼
+//[bottomNavigation.setOnItemSelectedListener]
+//│ Penjelasan: Listener untuk menangkap event klik item bottom nav
+//▼
+//[User Klik Menu Item]
+//│
+//▼
+//<item.itemId?>
+//│ Penjelasan: Identifikasi menu mana yang diklik berdasarkan ID
+//│
+//├─[R.id.nav_home]──▶ [updateToolbarTitle("Home")] → [HomeFragment()]
+//├─[R.id.nav_about]─▶ [updateToolbarTitle("About")] → [AboutFragment()]
+//└─[R.id.nav_profile]→ [updateToolbarTitle("Profile")] → [ProfileFragment()]
+//│
+//▼
+//[loadFragment(fragment)]
+//│ Penjelasan: Method helper untuk mengganti fragment
+//▼
+//[supportFragmentManager.beginTransaction()]
+//│ Penjelasan: Mulai transaksi fragment (add/replace/remove)
+//▼
+//[.replace(R.id.fragment_container, fragment)]
+//│ Penjelasan: Ganti fragment lama di container dengan fragment baru
+//▼
+//[.commit()]
+//│ Penjelasan: Eksekusi transaksi secara asynchronous
+//▼
+//[Fragment Tampil]
+//▼
+//[END]
+
+
+
+//TOOLBAR
+//[START]
+//│
+//▼
+//[onCreateOptionsMenu()]
+//│ Penjelasan: Dipanggil sistem saat Toolbar dibuat, untuk inflate menu
+//▼
+//[menuInflater.inflate(R.menu.menu_main)]
+//│ Penjelasan: Load file XML menu ke objek Menu
+//▼
+//[User Klik Menu Icon]
+//│
+//▼
+//[onOptionsItemSelected(item)]
+//│ Penjelasan: Callback saat item menu diklik
+//▼
+//<item.itemId?>
+//│ Penjelasan: Identifikasi menu berdasarkan ID
+//│
+//├─[action_settings]────▶ [Intent(SettingsActivity)] → [startActivity] → [END]
+//│   Penjelasan: Buka halaman pengaturan
+//├─[action_qr_generator]─▶ [Intent(QRGeneratorActivity)] → [startActivity] → [END]
+//│   Penjelasan: Buka halaman generate QR
+//├─[action_qr_scanner]───▶ [Intent(QRScannerActivity)] → [startActivity] → [END]
+//│   Penjelasan: Buka halaman scan QR
+//└─[action_camera_intent]▶ [Intent(CameraIntentActivity)] → [startActivity] → [END]
+//Penjelasan: Buka halaman kamera

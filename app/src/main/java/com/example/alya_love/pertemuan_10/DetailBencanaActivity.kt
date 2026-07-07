@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.alya_love.databinding.ActivityDetailBencanaBinding
 import com.example.alya_love.room.AppDatabase
+import com.example.alya_love.room.BencanaEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class DetailBencanaActivity : AppCompatActivity() {
 
@@ -42,16 +44,30 @@ class DetailBencanaActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindData(item: com.example.alya_love.room.BencanaEntity) {
+    private fun bindData(item: BencanaEntity) {
         binding.tvJudul.text = item.judul
         binding.tvDeskripsi.text = item.deskripsi
         binding.tvLokasi.text = "📍 ${item.lokasi}"
         binding.tvTanggal.text = "📅 ${item.tanggal}"
 
         if (item.gambar.isNotEmpty()) {
-            Glide.with(this)
-                .load(Uri.parse(item.gambar))
-                .into(binding.ivGambar)
+            // ✅ CEK: URL internet atau file lokal?
+            if (item.gambar.startsWith("http://") || item.gambar.startsWith("https://")) {
+                // URL internet (dari dummy data)
+                Glide.with(this)
+                    .load(item.gambar)
+                    .into(binding.ivGambar)
+            } else {
+                // File lokal (dari user upload)
+                val file = File(item.gambar)
+                if (file.exists()) {
+                    Glide.with(this)
+                        .load(file)
+                        .into(binding.ivGambar)
+                } else {
+                    binding.ivGambar.setImageResource(android.R.drawable.ic_menu_gallery)
+                }
+            }
         } else {
             binding.ivGambar.setImageResource(android.R.drawable.ic_menu_gallery)
         }

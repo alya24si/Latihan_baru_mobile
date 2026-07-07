@@ -14,18 +14,10 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <ImageView
-            android:id="@+id/ivGambar"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:background="#E0E0E0"/>
-
         <TextView
             android:id="@+id/tvNamaDonatur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#2C3E50"/>

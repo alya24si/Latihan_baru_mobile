@@ -131,3 +131,91 @@ class QRGeneratorActivity : AppCompatActivity() {
         }
     }
 }
+
+
+
+//Mulai
+//│
+//▼
+//onCreate()
+//│
+//▼
+//setContentView(R.layout.activity_qr_generator)
+//│
+//▼
+//initViews()
+//(findViewById untuk EditText, ImageView,
+//Button Generate, Button Save)
+//│
+//▼
+//setupListeners()
+//│
+//▼
+//btnGenerateQR.setOnClickListener()
+//│
+//▼
+//Mengambil input
+//etQRText.text.toString().trim()
+//│
+//▼
+//text.isNotEmpty() ?
+//│
+//┌──┴───────────────┐
+//│                  │
+//Tidak             Ya
+//│                  │
+//▼                  ▼
+//Toast         generateQRCode(text)
+//("Masukkan      │
+//teks")          ▼
+//MultiFormatWriter().encode()
+//│
+//▼
+//BitMatrix
+//│
+//▼
+//Bitmap.createBitmap()
+//│
+//▼
+//Loop for
+//(setPixel hitam/putih)
+//│
+//▼
+//currentQRBitmap = bitmap
+//│
+//▼
+//ivQRCode.setImageBitmap(bitmap)
+//│
+//▼
+//btnSaveQR.visibility = VISIBLE
+//│
+//▼
+//Toast "QR Code berhasil dibuat"
+//│
+//▼
+//btnSaveQR.setOnClickListener()
+//│
+//▼
+//currentQRBitmap?.let{ }
+//│
+//▼
+//saveQRToGallery(bitmap)
+//│
+//▼
+//Environment.getExternalStoragePublicDirectory()
+//│
+//▼
+//FileOutputStream()
+//│
+//▼
+//bitmap.compress()
+//│
+//▼
+//MediaStore.insert()
+//│
+//▼
+//Toast
+//"QR Code disimpan"
+//│
+//▼
+//Selesai

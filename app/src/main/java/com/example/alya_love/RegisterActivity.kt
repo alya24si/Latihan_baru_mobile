@@ -150,3 +150,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 }
+
+//(Start) → [onCreate] → [Input Form] → [btnRegister.click] → [validateForm()] → <Ada yang kosong/salah?> ─YES─→ [showError()] → (End)
+//                                                                                                          │
+//                                                                                                          NO
+//
+//                                                                                                           ↓
+//(End) ← [finish()] ← [Toast "Berhasil"] ← [SP.save(nama, tglLahir, gender, agama, username, password)] ← [apply()]

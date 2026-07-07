@@ -13,21 +13,26 @@ import com.example.alya_love.R
 import com.example.alya_love.room.AppDatabase
 import com.example.alya_love.room.BencanaEntity
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 class TambahBencanaActivity : AppCompatActivity() {
 
     private lateinit var db: AppDatabase
-
     private var selectedImageUri: Uri? = null
 
     private val imagePicker =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-
             if (uri != null) {
-                selectedImageUri = uri
+                // ✅ COPY ke internal storage
+                val localPath = copyImageToInternalStorage(uri)
 
-                findViewById<ImageView>(R.id.ivPreview)
-                    .setImageURI(uri)
+                if (localPath != null) {
+                    selectedImageUri = Uri.parse(localPath)
+                    findViewById<ImageView>(R.id.ivPreview).setImageURI(selectedImageUri)
+                } else {
+                    Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -50,22 +55,16 @@ class TambahBencanaActivity : AppCompatActivity() {
         }
 
         btnSimpan.setOnClickListener {
-
             if (etJudul.text.isEmpty() ||
                 etDeskripsi.text.isEmpty() ||
                 etLokasi.text.isEmpty() ||
                 etTanggal.text.isEmpty()
             ) {
-                Toast.makeText(
-                    this,
-                    "Lengkapi semua data terlebih dahulu",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Lengkapi semua data terlebih dahulu", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch {
-
                 db.bencanaDao().insert(
                     BencanaEntity(
                         judul = etJudul.text.toString(),
@@ -76,14 +75,88 @@ class TambahBencanaActivity : AppCompatActivity() {
                     )
                 )
 
-                Toast.makeText(
-                    this@TambahBencanaActivity,
-                    "Data berhasil disimpan",
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                Toast.makeText(this@TambahBencanaActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
     }
+
+    // ✅ FUNGSI BARU: Copy gambar ke internal storage
+    private fun copyImageToInternalStorage(uri: Uri): String? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri) ?: return null
+            val fileName = "BENCANA_${System.currentTimeMillis()}.jpg"
+            val file = File(filesDir, fileName)
+
+            FileOutputStream(file).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+
+            inputStream.close()
+            file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 }
+
+//[START]
+//│
+//▼
+//[Fragment → Klik FAB (+)]
+//│
+//▼
+//[Intent ke TambahBencanaActivity]
+//│
+//▼
+//[AppDatabase.getDatabase(this)]
+//│
+//▼
+//[User Input: etJudul, etDeskripsi, etLokasi, etTanggal]
+//│
+//▼
+//[User Klik btnPilihGambar]
+//│
+//▼
+//[imagePicker.launch("image/*")]
+//│
+//▼
+//[Gallery Terbuka → User Pilih Gambar]
+//│
+//▼
+//[Callback: uri != null?] ──[TIDAK]──▶ [END]
+//│
+//[YA]
+//│
+//▼
+//[selectedImageUri = uri]
+//│
+//▼
+//[ivPreview.setImageURI(uri)]
+//│
+//▼
+//[User Klik btnSimpan]
+//│
+//▼
+//<etJudul/deskripsi/lokasi/tanggal isEmpty()?> ──[YA]──▶ [Toast "Lengkapi semua data"] ──▶ [END]
+//│
+//[TIDAK]
+//│
+//▼
+//[lifecycleScope.launch]
+//│
+//▼
+//[db.bencanaDao().insert(BencanaEntity(...))]
+//│
+//▼
+//[Toast "Data berhasil disimpan"]
+//│
+//▼
+//[finish()]
+//│
+//▼
+//[Kembali ke Fragment]
+//│
+//▼
+//[END]
